@@ -1,0 +1,10 @@
+.container
+{
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    size: 50px;
+}
+.navbar-nav { 
+            margin-right: auto; 
+        } 
