@@ -1,6 +1,26 @@
 <?php 
+
 include '../Project/includes/header.php';
+include '../Project/includes/db_connect.php';
+
+session_start();
+    $message="";
+    if(count($_POST)>0) { 
+    	$query = "SELECT `user_id`, `name`, `password` FROM users WHERE name='" . $_POST["name"] . "' and password = '". $_POST["password"]."'";
+        $result = mysqli_query($conn, $query);
+        $row  = mysqli_fetch_assoc($result);
+        if(is_array($row)) {
+        $_SESSION["user_id"] = $row['user_id'];
+        $_SESSION["name"] = $row['name'];
+        } else {
+         $message = "Invalid Username or Password!";
+        }
+    }
+    if(isset($_SESSION["user_id"])) {
+    header("Location:index.php");
+    }
 ?>
+
 <div class="parent-container d-flex">
 	<div class="container d-flex justify-content-center">
 		<div class="row h-100">
@@ -11,14 +31,11 @@ include '../Project/includes/header.php';
 						<input type="text" name="name" id="name" class="form-control">
 					</div>
 					<div class="form-group">
-						<label for="unit_name"><i class="fa fa-envelope" aria-hidden="true"></i> Enter email:</label>
-						<input type="text" name="email" id="email" class="form-control">
-					</div>
-					<div class="form-group">
 						<label for="unit_name"><i class="fa fa-key" aria-hidden="true"></i> Enter password:</label>
 						<input type="password" name="password" id="password" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success text-center">Sign in</button>
+					<div class="message"><?php if($message!="") { echo $message; } ?></div>
 				</form>
 			</div>
 		</div>

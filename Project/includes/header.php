@@ -1,5 +1,9 @@
 <?php 
+
+date_default_timezone_set("Europe/Sofia");
+
 include 'db_connect.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +30,9 @@ include 'db_connect.php';
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
 			</li>
 		</ul>
 	</div>

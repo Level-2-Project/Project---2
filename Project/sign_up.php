@@ -33,8 +33,8 @@ $error = 0;
 
 if( isset($_POST['name'])){
 	$name = $_POST['name'];
-	if (strlen($name) < 8) {
-		echo "<p class= ".'text-danger'." >".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 8 characters!</p>";
+	if (strlen($name) < 6) {
+		echo "<p class= ".'text-danger'." >".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 6 characters!</p>";
 		$error++;
 	}
 }else{
@@ -44,8 +44,8 @@ if( isset($_POST['name'])){
 
 if (isset($_POST['email'])) {
 	$email = $_POST['email'];
-	if (strlen($email) < 20) {
-		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 20 characters!</p>";
+	if (strlen($email) < 10) {
+		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 10 characters!</p>";
 		$error++;
 	}
 }else{
@@ -73,7 +73,7 @@ if ($error > 0) {
 
 	//var_dump($result);
 	if($result){
-		echo "Recorde created successfuly";
+		echo header('Location:sign_in.php');
 	} else {
 		die('Query failed!' . mysqli_error($conn));
 	}
