@@ -1,7 +1,5 @@
 <?php 
 include 'db_connect.php';
-include 'config.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,23 +17,17 @@ include 'config.php';
     <span class="navbar-toggler-icon"></span>
   </button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="nav nav-pills nav-fill">
+	<ul class="nav nav-pills ml-auto">
 			<li class="nav-item active">
-				<a class="nav-link" href="register.php">Register<span class="sr-only">(current)</span></a>
+				<a class="nav-link active" href="sign_up.php">Sign Up<span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="login.php">Login</a>
+			<li class="nav-item active">
+				<a class="nav-link" href="sign_in.php">Sign In</a>
 			</li>
-<!-- 			<li class="nav-item">
-				<a class="nav-link" href="<?= ROOT_DIR . 'cruds/products'?>">Products</a>
+			<li class="nav-item active">
+				<a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= ROOT_DIR . 'cruds/recipes'?>">Recipes</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= ROOT_DIR . 'cruds/visualizer'?>">Visualizer</a>
-			</li> -->
 		</ul>
-	</div> 
+	</div>
 </nav>
 <div class="container">

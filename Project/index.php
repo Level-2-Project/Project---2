@@ -30,7 +30,7 @@ if( mysqli_num_rows( $result ) > 0 ){
 		<input type="submit" name="submit" value="Apply">
 	</form>
 
-	<table style="margin-left: 50px" class="table table-striped">
+	<table  class="table table-striped">
 		<tr>
 			<td>#</td>
 			<td>Author</td>
