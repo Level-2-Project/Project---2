@@ -64,3 +64,6 @@ if( mysqli_num_rows( $result ) > 0 ){
 	die('Query failed!' . mysqli_error($conn));
 }
 ?>
+<?php 
+include '../Project/includes/footer.php';
+?>
