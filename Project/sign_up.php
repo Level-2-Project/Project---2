@@ -2,7 +2,7 @@
 include '../Project/includes/header.php';
 ?>
 <div class="parent-container d-flex">
-	<div class="container">
+	<div class="container d-flex justify-content-center">
 		<div class="row h-100">
 			<div class="col-xs-6" >
 			<form method="post" action="">
@@ -18,7 +18,7 @@ include '../Project/includes/header.php';
 						<label for="unit_name"><i class="fa fa-key" aria-hidden="true"></i> Enter password:</label>
 						<input type="password" name="password" id="password" class="form-control">
 					</div>
-					<button type="submit" class="btn btn-success">Register</button>
+					<button type="submit" class="btn btn-success">Sign up</button>
 				</form>
 			</div>
 		</div>
