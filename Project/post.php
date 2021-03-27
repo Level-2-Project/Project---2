@@ -7,10 +7,14 @@ session_start();
 ?>
 
 	<h1>Write a post</h1>
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
 		<label>Enter post text.</label>
 		<input class="form-control" type="text" name="post_text">
+	</div>
+	<div class="form-group">
+		<label for="product-image">Post image</label>
+		<input type="file" id="product-image" name="image" value="">
 	</div>
 	<div class="form-group">
 		<input class="form-control" type="submit" name="submit" value="post">
@@ -25,7 +29,27 @@ if( isset( $_POST['submit'] ) ){
 	$post_text = $_POST['post_text'];
 	$user_id = $_SESSION['user_id'];
 
-	$insert_query = "INSERT INTO `posts`(`user_id`, `text`, `created_at`) VALUES ('$user_id', '$post_text', '$current_date')";
+	if( isset( $_FILES['image'] ) ){
+		
+		if( !empty( isset( $_FILES['image'] ) ) ){
+			
+			if ($_FILES['product_image']['size'] > 100000) { 
+       			die('upload file up to 100kb');
+   		 	} 
+
+			$upload_dir = 'uploads/';
+			
+			$uploadfile = $upload_dir . basename( $_FILES['image']['name'] );
+			
+			if ( move_uploaded_file( $_FILES['image']['tmp_name'], $uploadfile ) ) {
+				echo "File is valid, and was successfully uploaded.\n";
+			} else {
+				echo "Possible file upload attack!\n";
+			}
+		}
+	}
+
+	$insert_query = "INSERT INTO `posts`(`user_id`, `text`, `created_at`, `image`) VALUES ('$user_id', '$post_text', '$current_date', '$uploadfile')";
 
 	$result = mysqli_query($conn, $insert_query);
 
