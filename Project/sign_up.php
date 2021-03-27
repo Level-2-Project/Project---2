@@ -71,7 +71,6 @@ if ($error > 0) {
 //3
 	$result = mysqli_query($conn, $insert_query);
 
-	//var_dump($result);
 	if($result){
 		echo header('Location:sign_in.php');
 	} else {
