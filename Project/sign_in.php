@@ -98,4 +98,3 @@ if ($error > 0) {
 
 
 
-include '../Project/includes/footer.php';
