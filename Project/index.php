@@ -38,14 +38,16 @@ if( mysqli_num_rows( $result ) > 0 ){
 				<td><?= $row['name']?></td>	
 				<td><?= $row['text']?></td>
 				<td>
-					<img src="<?= $row['image'] ?>" width="200">
+					<?php if( !empty( $row['image']) && ($row['image'] != 'uploads/posts_uploads/') ) : ?>
+						<img src="<?= $row['image'] ?>" width="200">
+					<?php endif; ?>
 				</td>	
 				<td>
 					<?= $row['created_at']?>
 					<?= $row['likes']?>
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a href="like.php?id=<?= $row['post_id']?>" class="btn btn-primary <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Like</a>
 				</td>
-				<td><a href="update.php?id=<?= $row['product_id']?>" class="btn btn-warning">Comment</a></td>
+				<td><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a></td>
 				<td><a href="delete.php?id=<?= $row['post_id']?>" class="btn btn-danger">Delete</a></td>	
 			</tr>
 			<?php
