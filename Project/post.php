@@ -6,15 +6,15 @@ session_start();
 
 ?>
 
-	<h1>Write a post</h1>
+	<h1>Write a post.</h1>
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
 		<label>Enter post text.</label>
 		<input class="form-control" type="text" name="post_text">
 	</div>
 	<div class="form-group">
-		<label for="product-image">Post image</label>
-		<input type="file" id="product-image" name="image" value="">
+		<label for="post-image">Post image</label>
+		<input type="file" id="post-image" name="image">
 	</div>
 	<div class="form-group">
 		<input class="form-control" type="submit" name="submit" value="post">
@@ -23,7 +23,7 @@ session_start();
 
 <?php
 
-if( isset( $_POST['submit'] ) ){
+if( isset( $_POST['post_text'] ) ){
 
 	$current_date = date('Y-m-d G:i:s');
 	$post_text = $_POST['post_text'];
@@ -33,11 +33,11 @@ if( isset( $_POST['submit'] ) ){
 		
 		if( !empty( isset( $_FILES['image'] ) ) ){
 			
-			if ($_FILES['product_image']['size'] > 100000) { 
+			if ($_FILES['post_image']['size'] > 100000) { 
        			die('upload file up to 100kb');
    		 	} 
 
-			$upload_dir = 'uploads/';
+			$upload_dir = 'uploads/posts_uploads/';
 			
 			$uploadfile = $upload_dir . basename( $_FILES['image']['name'] );
 			
