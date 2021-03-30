@@ -32,7 +32,6 @@ if( mysqli_num_rows( $result ) > 0 ){
 		$num = 1;
 
 		while( $row = mysqli_fetch_assoc( $result ) ){
-			$capnum = $row['likes'];
 			?>
 			<tr>
 				<td><?= $num ++ ?></td>
@@ -44,7 +43,7 @@ if( mysqli_num_rows( $result ) > 0 ){
 				<td>
 					<?= $row['created_at']?>
 					<?= $row['likes']?>
-					<a href="index.php ?>"> <i class="fa fa-thumbs-o-up" aria-hidden="true">&nbsp<button onclick="<?php $capnum=$capnum+1;?>"><?=$capnum?></button></i></a>
+					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a href="like.php?id=<?= $row['post_id']?>" class="btn btn-primary <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Like</a>
 				</td>
 				<td><a href="update.php?id=<?= $row['product_id']?>" class="btn btn-warning">Comment</a></td>
 				<td><a href="delete.php?id=<?= $row['post_id']?>" class="btn btn-danger">Delete</a></td>	
