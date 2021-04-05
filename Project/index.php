@@ -47,7 +47,9 @@ if( mysqli_num_rows( $result ) > 0 ){
 					<?= $row['likes']?>
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a href="like.php?id=<?= $row['post_id']?>" class="btn btn-primary <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Like</a>
 				</td>
-				<td><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a></td>
+				<td><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a>&nbsp
+					<a href="comments_view.php?id=<?= $row['post_id']?>" class="btn btn-warning" >View Comment</a>
+				</td>
 				<td><a href="delete.php?id=<?= $row['post_id']?>" class="btn btn-danger">Delete</a></td>	
 			</tr>
 			<?php

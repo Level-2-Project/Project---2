@@ -34,8 +34,8 @@ if( isset( $_POST['submit'] ) ){
 		
 		if( !empty( isset( $_FILES['image'] ) ) ){
 			
-			if ($_FILES['image']['size'] > 100000) { 
-       			die('upload file up to 100kb');
+			if ($_FILES['image']['size'] > 100000000) { 
+       			die('upload file up to 100000kb');
    		 	} 
 
 			$upload_dir = 'uploads/comments_uploads/';
@@ -50,7 +50,7 @@ if( isset( $_POST['submit'] ) ){
 		}
 	}
 
-	$insert_query = "INSERT INTO `comments`(`user_id`, `comment_text`, `created_at`, `image`, `post_id`) VALUES ('$user_id', '$comment_text', '$current_date', '$uploadfile', '$post_id')";
+	$insert_query = "INSERT INTO `comments`(`user_id`, `comment_text`, `comment_created`, `comment_image`, `post_id`) VALUES ('$user_id', '$comment_text', '$current_date', '$uploadfile', '$post_id')";
 
 	$result = mysqli_query($conn, $insert_query);
 
