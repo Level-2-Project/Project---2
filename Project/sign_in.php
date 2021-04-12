@@ -4,6 +4,7 @@ include '../Project/includes/header.php';
 include '../Project/includes/db_connect.php';
 
 session_start();
+
     $message="";
     if(count($_POST)>0) { 
     	$query = "SELECT `user_id`, `name`, `password` FROM users WHERE name='" . $_POST["name"] . "' and password = '". $_POST["password"]."'";
@@ -90,7 +91,7 @@ if ($error > 0) {
 
 	//var_dump($result);
 	if($result){
-		echo "Recorde created successfuly";
+		echo "Record created successfuly";
 	} else {
 		die('Query failed!' . mysqli_error($conn));
 	}
