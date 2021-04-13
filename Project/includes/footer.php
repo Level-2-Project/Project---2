@@ -6,7 +6,7 @@
       <!-- Section: CTA -->
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
-          <span class="me-3">Register for free </span>
+          <span class="me-3">Register for free here &nbsp</span>
           	<a class="btn btn-outline-light btn-rounded" href="sign_up.php">Sign up!</a>
         </p>
       </section>

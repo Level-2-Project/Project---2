@@ -11,7 +11,7 @@ session_start();
 //$value = mysqli_fetch_assoc($result_likes_count); 
 //$likes_count = $value['NumberOfLikes'];       
 
-$read_query = "SELECT c.COUNT(post_id), a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id` AS c.NumberOfLikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id JOIN posts_likes c ON b.post_id = c.post_id WHERE b.`deleted_at` IS NULL";
+$read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id`, COUNT(c.like_id) AS countlikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id JOIN posts_likes c ON b.post_id = c.post_id  WHERE b.`deleted_at` IS NULL AND c.post_id = b.post_id GROUP BY c.post_id ";
 
 $likes_read_query = "SELECT `user_id`, `post_id` FROM `posts_likes`";
 
@@ -63,10 +63,10 @@ if( mysqli_num_rows( $result ) > 0 ){
 					<?php endif; ?>
 				</td>	
 				<td>
-					<?= $row['NumberOfLikes']?>
 					<?= $row['created_at']?>
+					<?= $row['countlikes']?>
 					<a href="like.php?id=<?= $row['post_id']?>" class=" btn  <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >
-					<i class="fa fa-thumbs-o-up " aria-hidden="true"></i></a>
+					<i class="fa fa-thumbs-o-up" style="color:blue" aria-hidden="true"></i></a>
 				</td>
 				<td><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a>&nbsp
 					<a href="comments_view.php?id=<?= $row['post_id']?>" class="btn btn-warning" >View Comment</a>
