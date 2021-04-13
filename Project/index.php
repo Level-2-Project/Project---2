@@ -11,7 +11,7 @@ session_start();
 //$value = mysqli_fetch_assoc($result_likes_count); 
 //$likes_count = $value['NumberOfLikes'];       
 
-$read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id`, COUNT(c.like_id) AS countlikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id JOIN posts_likes c ON b.post_id = c.post_id  WHERE b.`deleted_at` IS NULL AND c.post_id = b.post_id GROUP BY c.post_id ";
+$read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id`, COUNT(c.like_id) AS countlikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id LEFT JOIN posts_likes c ON b.post_id = c.post_id WHERE b.deleted_at IS NULL  GROUP BY b.post_id ";
 
 $likes_read_query = "SELECT `user_id`, `post_id` FROM `posts_likes`";
 
