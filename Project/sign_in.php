@@ -96,6 +96,3 @@ if ($error > 0) {
 		die('Query failed!' . mysqli_error($conn));
 	}
 }
-
-
-
