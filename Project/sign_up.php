@@ -27,13 +27,17 @@ include '../Project/includes/header.php';
 
 <?php 
 
+// $hashed_password = password_hash( $password, PASSWORD_DEFAULT );
+//$hashed_password = password_hash( $trimmed_password, PASSWORD_DEFAULT );
+
 //1 
 
 $error = 0;
 
 if( isset($_POST['name'])){
 	$name = $_POST['name'];
-	if (strlen($name) < 6) {
+	$trimmed_username = trim( $name );
+	if (strlen($trimmed_username) < 6) {
 		echo "<p class= ".'text-danger'." >".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 6 characters!</p>";
 		$error++;
 	}
@@ -55,7 +59,10 @@ if (isset($_POST['email'])) {
 
 if (isset($_POST['password'])) {
 	$password = $_POST['password'];
-	if (strlen($password) < 10) {
+	$trimmed_password = trim( $password );
+	$hashed_password = password_hash( $trimmed_password, PASSWORD_DEFAULT );
+	var_dump($hashed_password);
+	if (strlen($trimmed_password) < 10) {
 		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The password must be minimum 10 characters!</p>";
 		$error++;
 	}
@@ -67,7 +74,7 @@ if (isset($_POST['password'])) {
 if ($error > 0) {
 	echo "<p class= ".'text-danger'.">Errors found!</p>";
 }else{
-	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$trimmed_username', '$email', '$hashed_password')";
 //3
 	$result = mysqli_query($conn, $insert_query);
 
