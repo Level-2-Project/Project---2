@@ -21,7 +21,7 @@ include 'db_connect.php';
 	<img src="uploads/logo/fakebook_logo.png" width="300">
 	<h1 class="icon"><a href="post.php" class=" <?=(!isset($_SESSION['user_id'])) 
 		? '' : ''  ?>" ><i class="fa fa-plus-circle heading" aria-hidden="true" padding: 100px></i></a></h1>&nbsp
-	<h5>Share something <i class="fa fa-smile-o" aria-hidden="true"></i></h5>
+	<h5>Share something! <i class="fa fa-smile-o" aria-hidden="true"></i></h5>
 	<a class="navbar-brand" href=""></a>	
 	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
