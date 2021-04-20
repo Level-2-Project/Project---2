@@ -54,7 +54,7 @@ if (isset($_POST['email'])) {
 	echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email is invalid!</p>";
 		$error++;
 }
-	if ((strlen($email) < 10) && $sanitized_email ) {
+	if (strlen($email) < 10) {
 		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 10 characters!</p>";
 		$error++;
 	}
