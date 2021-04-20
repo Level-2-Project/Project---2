@@ -26,7 +26,7 @@ session_start();
 if( isset( $_POST['submit'] ) ){
 
 	$current_date = date('Y-m-d G:i:s');
-	$comment_text = $_POST['comment_text'];
+	$comment_text = htmlspecialchars($_POST['comment_text'], ENT_QUOTES);
 	$user_id = $_SESSION['user_id'];
 	$post_id = $_GET['id'];
 
@@ -55,7 +55,7 @@ if( isset( $_POST['submit'] ) ){
 	$result = mysqli_query($conn, $insert_query);
 
 	if($result){
-		echo header('Location:sign_in.php');
+		echo header('Location:index.php');
 	} else {
 		die('Query failed!' . mysqli_error($conn));
 	}

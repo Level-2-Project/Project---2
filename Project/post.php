@@ -26,9 +26,9 @@ session_start();
 if( isset( $_POST['post_text'] ) ){
 
 	$current_date = date('Y-m-d G:i:s');
-	$post_text = $_POST['post_text'];
+	$post_text = htmlspecialchars( $_POST['post_text'], ENT_QUOTES);
 	$user_id = $_SESSION['user_id'];
-
+ 
 	if( isset( $_FILES['image'] ) ){
 		
 		if( !empty( isset( $_FILES['image'] ) ) ){
@@ -54,7 +54,7 @@ if( isset( $_POST['post_text'] ) ){
 	$result = mysqli_query($conn, $insert_query);
 
 	if($result){
-		echo header('Location:sign_in.php');
+		echo header('Location:index.php');
 	} else {
 		die('Query failed!' . mysqli_error($conn));
 	}

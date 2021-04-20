@@ -41,13 +41,13 @@ $result = mysqli_query( $conn, $read_query );
 if( mysqli_num_rows( $result ) > 0 ){
 
 	?>
-	<h1>Facebook Posts<span><a href="post.php" class="btn btn-info <?=(!isset($_SESSION['user_id'])) 
+	<!-- <h1>Facebook Posts<span><a href="post.php" class="btn btn-info <?=(!isset($_SESSION['user_id'])) 
 		? 'disabled' : ''  ?>" >Create Post</a></span></h1>
 
 	<form action="index.php" method="get" accept-charset="utf-8">
 		<input type="text" name="filter" value='' placeholder="Enter Keyword">
 		<input type="submit" name="submit" value="Apply">
-	</form>
+	</form> -->
 
 	<table  class="table table-striped">
 		<tr>

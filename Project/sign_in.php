@@ -6,11 +6,10 @@ include '../Project/includes/db_connect.php';
 session_start();
 
 if(isset($_POST['username'])){
-$trimmed_password = trim( $_POST['password'] );
-$trimmed_username = trim( $_POST['username'] );
+$trimmed_password = trim( htmlspecialchars($_POST['password'], ENT_QUOTES) );
+$trimmed_username = trim( htmlspecialchars($_POST['username'], ENT_QUOTES) );
 }
-var_dump(($_POST['username']));
-var_dump(($_POST['password']));
+
 
 //$hashed_password = password_hash( $trimmed_password, PASSWORD_DEFAULT );
 //$db_password = '$2y$10$3wRFm3R05ggxObS04uwTc.3';
@@ -27,23 +26,29 @@ var_dump(($_POST['password']));
         $_SESSION["user_id"] = $row['user_id'];
         $_SESSION["name"] = $row['name'];
         $hashed_password = $row['password'];
+        if(isset($_POST['username']) && (isset($_POST['password'])) ){
+$verified_password = password_verify($trimmed_password, $hashed_password);
+}
+
+    if((isset($_SESSION["user_id"]))) {
+    	if(password_verify($trimmed_password, $hashed_password)) {
+    		header("Location:index.php");
+    }
+}
         } else {
          $message = "Invalid Username or Password!";
         }
     }
-    var_dump($hashed_password);
 
-if((isset($_POST['username'])) ){
-	//&& (isset($_POST['$hashed_password']))
-$verified_password = password_verify($_POST['password'], $hashed_password);
-}
+// if(isset($_POST['username']) && (isset($_POST['password'])) ){
+// $verified_password = password_verify($trimmed_password, $hashed_password);
+// }
 
-    //if((isset($_SESSION["user_id"]))) {
-    	if(password_verify($_POST['password'], $hashed_password)) {
-    		echo "true";
-    header("Location:index.php");
-    //}
-}else{echo "false";}
+//     if((isset($_SESSION["user_id"]))) {
+//     	if(password_verify($trimmed_password, $hashed_password)) {
+//     		header("Location:index.php");
+//     }
+// }
 ?>
 
 <div class="parent-container d-flex">
