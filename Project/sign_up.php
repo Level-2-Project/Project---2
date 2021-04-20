@@ -36,7 +36,7 @@ $error = 0;
 
 if( isset($_POST['name'])){
 	$name = $_POST['name'];
-	$trimmed_username = trim( $name );
+	$trimmed_username = trim( htmlspecialchars($name, ENT_QUOTES) );
 	if (strlen($trimmed_username) < 6) {
 		echo "<p class= ".'text-danger'." >".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 6 characters!</p>";
 		$error++;
@@ -48,7 +48,13 @@ if( isset($_POST['name'])){
 
 if (isset($_POST['email'])) {
 	$email = $_POST['email'];
-	if (strlen($email) < 10) {
+	if(filter_var($email, FILTER_VALIDATE_EMAIL )){
+	$sanitized_email = trim( htmlspecialchars( $email , ENT_QUOTES ) );
+}else{
+	echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email is invalid!</p>";
+		$error++;
+}
+	if ((strlen($email) < 10) && $sanitized_email ) {
 		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 10 characters!</p>";
 		$error++;
 	}
@@ -59,9 +65,8 @@ if (isset($_POST['email'])) {
 
 if (isset($_POST['password'])) {
 	$password = $_POST['password'];
-	$trimmed_password = trim( $password );
+	$trimmed_password = trim( htmlspecialchars($password, ENT_QUOTES) );
 	$hashed_password = password_hash( $trimmed_password, PASSWORD_DEFAULT );
-	var_dump($hashed_password);
 	if (strlen($trimmed_password) < 10) {
 		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The password must be minimum 10 characters!</p>";
 		$error++;
@@ -74,7 +79,7 @@ if (isset($_POST['password'])) {
 if ($error > 0) {
 	echo "<p class= ".'text-danger'.">Errors found!</p>";
 }else{
-	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$trimmed_username', '$email', '$hashed_password')";
+	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$trimmed_username', '$sanitized_email', '$hashed_password')";
 //3
 	$result = mysqli_query($conn, $insert_query);
 
