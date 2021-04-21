@@ -18,12 +18,10 @@ include '../Project/includes/header.php';
 						<label for="unit_name"><i class="fa fa-key" aria-hidden="true"></i> Enter password:</label>
 						<input type="password" name="password" id="password" class="form-control">
 					</div>
-					<button type="submit" class="btn btn-success">Sign up</button>
+					<button type="submit" class="btn btn-success btn-lg btn-block">Sign up</button>
 				</form>
-			</div>
-		</div>
-	</div>
-</div>
+			
+	
 
 <?php 
 
@@ -89,4 +87,8 @@ if ($error > 0) {
 		die('Query failed!' . mysqli_error($conn));
 	}
 }
-
+?>
+</div>
+</div>
+</div>
+		</div>

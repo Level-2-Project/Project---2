@@ -3,7 +3,7 @@
 include '../Project/includes/header.php';
 include '../Project/includes/db_connect.php';
 
-session_start();
+//session_start();
 
 if(isset($_POST['username'])){
 $trimmed_password = trim( htmlspecialchars($_POST['password'], ENT_QUOTES) );
@@ -36,7 +36,7 @@ $verified_password = password_verify($trimmed_password, $hashed_password);
     }
 }
         } else {
-         $message = "Invalid Username or Password!";
+         $message = "<p class= ".'text-danger'. ">Invalid Username or Password!</p>";
         }
     }
 
@@ -64,14 +64,10 @@ $verified_password = password_verify($trimmed_password, $hashed_password);
 						<label for="name"><i class="fa fa-key" aria-hidden="true"></i> Enter password:</label>
 						<input type="password" name="password" id="password" class="form-control">
 					</div>
-					<button type="submit" class="btn btn-success text-center">Sign in</button>
+					<button type="submit" class="btn btn-success text-center btn-lg btn-block">Sign in</button>
 					<div class="message"><?php if($message!="") { echo $message; } ?></div>
 				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
+			
 <?php 
 
 //1 
@@ -81,7 +77,7 @@ $error = 0;
 if( isset($_POST['username'])){
 	$name = $_POST['username'];
 	if (strlen($name) < 8) {
-		echo "<p class= ".'text-center'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 8 characters!</p>";
+		echo "<p class= ".'text-danger'. ">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The username must be minimum 8 characters!</p>";
 		$error++;
 	}
 }else{
@@ -92,7 +88,7 @@ if( isset($_POST['username'])){
 if (isset($_POST['email'])) {
 	$email = $_POST['email'];
 	if (strlen($email) < 20) {
-		echo "<p class= ".'text-center'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 20 characters!</p>";
+		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The email must be minimum 20 characters!</p>";
 		$error++;
 	}
 }else{
@@ -103,7 +99,7 @@ if (isset($_POST['email'])) {
 if (isset($_POST['password'])) {
 	$password = $_POST['password'];
 	if (strlen($password) < 10) {
-		echo "<p class= ".'text-center'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The password must be minimum 10 characters!</p>";
+		echo "<p class= ".'text-danger'.">".'<i class="fa fa-exclamation-circle" aria-hidden="true"></i>'." The password must be minimum 10 characters!</p>";
 		$error++;
 	}
 }else{
@@ -112,7 +108,7 @@ if (isset($_POST['password'])) {
 	
 //2 insert_query
 if ($error > 0) {
-	echo "<p class= ".'text-center'.">Errors found!</p>";
+	echo "<p class= ".'text-danger'.">Errors found!</p>";
 }else{
 	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
 //3
@@ -125,3 +121,8 @@ if ($error > 0) {
 		die('Query failed!' . mysqli_error($conn));
 	}
 }
+?>
+</div>
+		</div>
+	</div>
+</div>

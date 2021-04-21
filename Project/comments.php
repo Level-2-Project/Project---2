@@ -2,7 +2,7 @@
 
 include '../Project/includes/header.php';
 
-session_start();
+//session_start();
 
 ?>
 
