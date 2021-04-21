@@ -1,7 +1,8 @@
 <?php 
+
 include '../Project/includes/header.php';
 
-session_start();
+// session_start();
 
 $results_per_page = 10;
 
@@ -77,12 +78,12 @@ if( mysqli_num_rows( $result ) > 0 ){
 				</td>	
 				<td>
 					<?= $row['created_at']?>
-					<?= $row['countlikes']?>
+					<p><?= $row['countlikes']?>
 					<a href="like.php?id=<?= $row['post_id']?>" class=" btn  <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >
-					<i class="fa fa-thumbs-o-up" style="color:blue" aria-hidden="true"></i></a>
+					<i class="fa fa-thumbs-o-up" style="color:blue" aria-hidden="true"></i></a></p>
 				</td>
-				<td><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a>&nbsp
-					<a href="comments_view.php?id=<?= $row['post_id']?>" class="btn btn-warning" >View Comment</a>
+				<td><div class="btn-group-vertical"><a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Comment</a>
+					<a href="comments_view.php?id=<?= $row['post_id']?>" class="btn btn-warning" >View Comment</a></div>
 				</td>
 				<td><a href="delete.php?id=<?= $row['post_id']?>" class="btn btn-danger <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>">Delete</a></td>	
 			</tr>
@@ -117,7 +118,6 @@ $filters_link_for_pagination = '';
 
 	</p>
 
-	<a href="recycle_bin.php">Recycle Bin</a>
 	<?php
 
 } else {

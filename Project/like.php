@@ -3,7 +3,7 @@
 include '../Project/includes/header.php';
 include '../Project/includes/db_connect.php';
 
-session_start();
+//session_start();
 
 $post_id = $_GET['id'];
 $user_id = $_SESSION["user_id"];
