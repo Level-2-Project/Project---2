@@ -1,5 +1,7 @@
 <?php 
+
 include '../Project/includes/header.php';
+
 ?>
 <div class="parent-container d-flex">
 	<div class="container d-flex justify-content-center">
@@ -20,15 +22,8 @@ include '../Project/includes/header.php';
 					</div>
 					<button type="submit" class="btn btn-success btn-lg btn-block">Sign up</button>
 				</form>
-			
-	
 
 <?php 
-
-// $hashed_password = password_hash( $password, PASSWORD_DEFAULT );
-//$hashed_password = password_hash( $trimmed_password, PASSWORD_DEFAULT );
-
-//1 
 
 $error = 0;
 
@@ -42,7 +37,6 @@ if( isset($_POST['name'])){
 }else{
 	$error++;
 }
-
 
 if (isset($_POST['email'])) {
 	$email = $_POST['email'];
@@ -60,7 +54,6 @@ if (isset($_POST['email'])) {
 	$error++;
 }
 
-
 if (isset($_POST['password'])) {
 	$password = $_POST['password'];
 	$trimmed_password = trim( htmlspecialchars($password, ENT_QUOTES) );
@@ -72,13 +65,12 @@ if (isset($_POST['password'])) {
 }else{
 	$error++;
 }
-	
-//2 insert_query
+
 if ($error > 0) {
 	echo "<p class= ".'text-danger'.">Errors found!</p>";
 }else{
 	$insert_query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('$trimmed_username', '$sanitized_email', '$hashed_password')";
-//3
+
 	$result = mysqli_query($conn, $insert_query);
 
 	if($result){
@@ -88,7 +80,8 @@ if ($error > 0) {
 	}
 }
 ?>
-</div>
-</div>
-</div>
+
+			</div>
 		</div>
+	</div>
+</div>

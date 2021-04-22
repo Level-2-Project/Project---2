@@ -21,7 +21,7 @@ session_start();
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<img src="uploads/logo/fakebook_logo.png" width="300">
-	<h1 class="icon"><a href="post.php" class=" btn  <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" ><i class="fa fa-plus-circle heading fa-3x " style="color:#0099cc" aria-hidden="true" padding: 100px></i></a></h1>&nbsp
+	<h1><a href="post.php" class=" btn  <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" ><i class="fa fa-plus-circle heading fa-3x " style="color:#0099cc" aria-hidden="true" padding: 100px></i></a></h1>&nbsp
 	<h4>Share something! <i class="fa fa-smile-o" aria-hidden="true"></i></h4>
 	<a class="navbar-brand" href=""></a>	
 	 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

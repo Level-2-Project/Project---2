@@ -2,11 +2,9 @@
 
 include '../Project/includes/header.php';
 
-//session_start();
-
 ?>
 
-	<h1>Write a post.</h1>
+<h1>Write a post.</h1>
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
 		<label>Enter post text.</label>
