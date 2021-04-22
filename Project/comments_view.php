@@ -1,10 +1,7 @@
 <?php 
 include '../Project/includes/header.php';
 
-//session_start();
-
 $post_id = $_GET['id'];
-//$user_id = $_SESSION['user_id'];
 
 $read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, c.`post_id` FROM `users` a JOIN posts b ON a.`user_id`= b.user_id JOIN comments c ON b.`post_id`= c.post_id WHERE b.`deleted_at` IS NULL AND c.`post_id` = $post_id";
 
@@ -15,7 +12,7 @@ $result_comments = mysqli_query( $conn, $read_query_co );
 
 if( mysqli_num_rows( $result ) > 0 ){
 
-	?>
+?>
     <h1>Post</h1>
 	<table  class="table table-striped">
 		<tr>
@@ -39,7 +36,6 @@ if( mysqli_num_rows( $result ) > 0 ){
 				</td>	
 				<td>
 					<?= $row['created_at']?>
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a href="like.php?id=<?= $row['post_id']?>" class="btn btn-primary <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Like</a>
 				</td>
 				<td>
 					<a href="comments.php?id=<?= $row['post_id']?>" class="btn btn-warning <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Add Comment</a>
@@ -66,19 +62,13 @@ if( mysqli_num_rows( $result ) > 0 ){
 			<tr>
 				<td><?= $num ++ ?></td>
 				<td><?= $row['name']?></td>	
-				<td>
-					<?= $row['comment_text']?>
-					
-				</td>	
+				<td><?= $row['comment_text']?></td>	
 				<td>
 					<?php if( !empty( $row['comment_image']) && ($row['comment_image'] != 'uploads/comments_uploads/') ) : ?>
 						<img src="<?= $row['comment_image'] ?>" width="200">
 					<?php endif; ?>
 				</td>
-				<td>
-					<?= $row['comment_created']?>
-					<!-- <?= $row['likes']?>
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a href="like.php?id=<?= $row['post_id']?>" class="btn btn-primary <?=(!isset($_SESSION['user_id'])) ? 'disabled' : ''  ?>" >Like</a> --></td>
+				<td><?= $row['comment_created']?></td>
 			</tr>
 			<?php
 		}

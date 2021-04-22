@@ -2,8 +2,6 @@
 
 include '../Project/includes/header.php';
 
-// session_start();
-
 $results_per_page = 10;
 
 if(isset($_GET['page'])){
@@ -41,15 +39,8 @@ $result = mysqli_query( $conn, $read_query );
 
 if( mysqli_num_rows( $result ) > 0 ){
 
-	?>
-	<!-- <h1>Facebook Posts<span><a href="post.php" class="btn btn-info <?=(!isset($_SESSION['user_id'])) 
-		? 'disabled' : ''  ?>" >Create Post</a></span></h1>
-
-	<form action="index.php" method="get" accept-charset="utf-8">
-		<input type="text" name="filter" value='' placeholder="Enter Keyword">
-		<input type="submit" name="submit" value="Apply">
-	</form> -->
-
+?>
+	
 	<table  class="table table-striped">
 		<tr>
 			<td>#</td>
@@ -64,8 +55,6 @@ if( mysqli_num_rows( $result ) > 0 ){
 		$num = 1;
 
 		while( $row = mysqli_fetch_assoc( $result ) ){
-			//$button_post_id = $row['post_id'];
-			//$likes_num = $row['NumberOfLikes'];
 			?>
 			<tr>
 				<td><?= $num ++ ?></td>
@@ -95,12 +84,11 @@ if( mysqli_num_rows( $result ) > 0 ){
 	<p>
 		<?php
 
-$filters_link_for_pagination = '';
+		$filters_link_for_pagination = '';
 
 			if($page > 1){
 				echo "<a class='btn btn-primary btn-sm ".(($page == 1) ? 'disabled' : '')."' href='index.php?page=".($page-1).$filters_link_for_pagination."'><i class='fa fa-arrow-left' aria-hidden='true'></i> Previous</a>";
-			}
-			else{
+			}else{
 				echo "<a class='btn btn-primary btn-sm ".(($page == 1) ? 'disabled' : '')."' href='index.php?page=1".$filters_link_for_pagination."'><i class='fa fa-arrow-left' aria-hidden='true'></i> Previous</a>";
 			}
 		?>
@@ -123,7 +111,7 @@ $filters_link_for_pagination = '';
 } else {
 	die('Query failed!' . mysqli_error($conn));
 }
-?>
+	?>
 <?php 
 include '../Project/includes/footer.php';
 ?>
