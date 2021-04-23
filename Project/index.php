@@ -24,12 +24,12 @@ $offset = ($page-1) * $results_per_page;
 $pagination_string = '';
 
 if($total_rows > $results_per_page){
-	$pagination_string = "ORDER BY created_at ASC LIMIT $results_per_page OFFSET $offset";
+	$pagination_string = "ORDER BY created_at DESC LIMIT $results_per_page OFFSET $offset";
 }
 
 $max_pages = ceil($total_rows/$results_per_page);
 
-$read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id`, COUNT(c.like_id) AS countlikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id LEFT JOIN posts_likes c ON b.post_id = c.post_id WHERE b.deleted_at IS NULL  GROUP BY b.post_id $pagination_string";
+$read_query = "SELECT a.`user_id`, a.`name`, b.`created_at`, b.`deleted_at`, b.`text`, b.`image`, b.`post_id`, COUNT(c.like_id) AS countlikes FROM `users` a JOIN posts b ON a.`user_id`= b.user_id LEFT JOIN posts_likes c ON b.post_id = c.post_id WHERE b.deleted_at IS NULL GROUP BY b.post_id $pagination_string";
 
 $likes_read_query = "SELECT `user_id`, `post_id` FROM `posts_likes`";
 
